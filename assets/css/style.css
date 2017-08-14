@@ -1,32 +1,67 @@
 body {
-	background-color: #5671a4;
+	background: url(../images/stage.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+ 	 -o-background-size: cover;
+  	background-size: cover;
+  	font-family: "Source Sans Pro", sans-serif;
+  	color: #ffffff;
+  	font-size: 18px;
 }
 
-#trivia {
-	
-	background: url(../images/concert_2.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
+#restart {
+	visibility: hidden;
+}
+
+#buttonwrapper {
+	width: 70px;
+	margin: 0 auto;
+}
+
+#gamewrapper, #timer {
+	background-color: rgba(0, 0, 0, .7);
+
 
 }
+
+#timer {
+	text-align: center;
+}
+
+#timer p, #game p {
+	padding: .5em 0;
+}
+
+
 
 h1, h2, h3, h4, h5 {
 	font-family: "Source Sans Pro", sans-serif;
 	text-align: center;
-	color: #000000;
+	background-color: rgba(51, 122, 183, .8);
+	color: #ffffff;
 	font-weight: bold;
+	margin: 0 0 1.5em;
+	padding: 1em 0;
+	letter-spacing: .15em
 }
 
-p {
-	font-family: "Source Sans Pro", sans-serif;
+p, .btn {
 	text-align: center;
-	color: #000000;
+	margin-top: 10px;
+}
+
+#game p, #timer p {
+	color: #ffffff;
+	font-size: 1.2em;
+	letter-spacing: .15em
 }
 
 h1  {
-	font-size: 2em;
+	font-size: 2.1em;
+
 }
 
 h2 {
 	font-size: 1.8em;
+
 }

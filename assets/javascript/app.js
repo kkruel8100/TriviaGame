@@ -32,6 +32,8 @@ $("#restart").on("click", reset);
 	function start () {
 		getQuestion(i);
 		// countdown(time);
+		$("#start").hide();
+
 	}
 
 	function reset () {
@@ -47,27 +49,16 @@ $("#restart").on("click", reset);
 	//function to decrease the timer and update the display; if zero is reached, countdown stops & unanswered questions increase by 1
 	function decrease (setTimer) {
 		time--;
-		$("#timer").text("Time Remaining: " + time);
+		$("#timer").html("<p>Time Remaining: " + time + "</p>");
 
 		if (time === 0 && i<trivia.length) {
 			stop();
 			unanswered++;
 			console.log(unanswered);
-			$("#game").text("The correct answer is " + trivia[i].answer + ".");
+			$("#game").html("<p>The correct answer is " + trivia[i].answer + ".</p>");
 			$("#timer").hide();
 			console.log(trivia[i].answer);
-			setTimeout(empty, 4000);
-			// countdown (4);
-				// if (time===0) {
-					// stop();
-					// empty();
-				// }
-	//		i++;
-	//		currentQuestion=false;
-	//		empty();
-	//		console.log("what is i" + i);
-	//		console.log(trivia.length);
-	//		console.log(time);		
+			setTimeout(empty, 4000);	
 		}
 	}
 
@@ -79,9 +70,7 @@ $("#restart").on("click", reset);
 	function getQuestion (i) {
 		if (i<trivia.length && gameOver===false) {
 		countdown(8);
-		$("#game").append("What was " + trivia[i].question + " original group name?");			
-		console.log(trivia[i].question);
-		console.log(trivia[i].choices.length);
+		$("#game").append("<p>What was " + trivia[i].question + " original group name?</p>");			
 			for (a=0; a<trivia[i].choices.length; a++) {
 				$("#game").append("<p>" + trivia[i].choices[a] + "</p>" );
 			}
@@ -93,25 +82,11 @@ $("#restart").on("click", reset);
 	}//get question
 
 	function empty () {		
-		console.log("what is i in empty " + i);
-		console.log(currentQuestion);
 		$("#timer").show();
-		
  		time=4;
  		i++;
-		console.log(time);
-		console.log(i);
-		// countdown(time);
-		// if (time===0) {
-			 $("#game").empty();
-			// i++;
-			// console.log("What is i++ " + i);
-			getQuestion(i);
-		// }	
-		// if (i=trivia.length) {
-				// stop();
-				// console.log("Game over");
-			// }
+    	$("#game").empty();
+    	getQuestion(i);
 	}
 
 });//document ready
