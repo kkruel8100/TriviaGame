@@ -20,8 +20,6 @@ body {
 
 #gamewrapper, #timer {
 	background-color: rgba(0, 0, 0, .7);
-
-
 }
 
 #timer {
@@ -29,10 +27,8 @@ body {
 }
 
 #timer p, #game p {
-	padding: .5em 0;
+	padding: .7em 0;
 }
-
-
 
 h1, h2, h3, h4, h5 {
 	font-family: "Source Sans Pro", sans-serif;
@@ -42,7 +38,7 @@ h1, h2, h3, h4, h5 {
 	font-weight: bold;
 	margin: 0 0 1.5em;
 	padding: 1em 0;
-	letter-spacing: .15em
+	letter-spacing: .15em;
 }
 
 p, .btn {
@@ -53,15 +49,19 @@ p, .btn {
 #game p, #timer p {
 	color: #ffffff;
 	font-size: 1.2em;
-	letter-spacing: .15em
+	letter-spacing: .15em;
 }
 
 h1  {
 	font-size: 2.1em;
-
 }
 
 h2 {
 	font-size: 1.8em;
-
 }
+
+h3 {
+	font-size: 1.2em;
+	letter-spacing: .15em;
+}
+

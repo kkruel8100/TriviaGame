@@ -26,12 +26,11 @@ var incorrect = 0;
 var i=0;
 var gameOver = false;
 
-$("#start").on("click", start);
-$("#restart").on("click", reset);
+	$("#start").on("click", start);
+	$("#restart").on("click", reset);
 
 	function start () {
 		getQuestion(i);
-		// countdown(time);
 		$("#start").hide();
 
 	}
@@ -54,10 +53,8 @@ $("#restart").on("click", reset);
 		if (time === 0 && i<trivia.length) {
 			stop();
 			unanswered++;
-			console.log(unanswered);
 			$("#game").html("<p>The correct answer is " + trivia[i].answer + ".</p>");
 			$("#timer").hide();
-			console.log(trivia[i].answer);
 			setTimeout(empty, 4000);	
 		}
 	}
@@ -67,10 +64,11 @@ $("#restart").on("click", reset);
 		clearInterval(interval);
 	}
 
+	//function to get next question
 	function getQuestion (i) {
 		if (i<trivia.length && gameOver===false) {
 		countdown(8);
-		$("#game").append("<p>What was " + trivia[i].question + " original group name?</p>");			
+		$("#game").append("<h3>What was the original group name of " + trivia[i].question + "?</h3>");			
 			for (a=0; a<trivia[i].choices.length; a++) {
 				$("#game").append("<p>" + trivia[i].choices[a] + "</p>" );
 			}
@@ -79,14 +77,50 @@ $("#restart").on("click", reset);
 		else {
 			gameOver=true;
 		}	
-	}//get question
-
-	function empty () {		
-		$("#timer").show();
- 		time=4;
- 		i++;
-    	$("#game").empty();
-    	getQuestion(i);
 	}
+
+	//function to check for end of game or get next question
+	function empty () {	
+		i++;
+		if (i===trivia.length) {
+			endGame();
+		}
+		else {	
+			$("#timer").show();
+	 		$("#game").empty();
+	    	getQuestion(i);
+    	}
+	}
+
+	//function to display end of game stats
+	function endGame () {
+		$("#timer").empty();
+		$("#game").html("<h2>Game Over! Next stop the Musicians Hall of Fame.</h2>")
+		$("#game").append("<p>Correct answers: " + correct + "</p>");
+		$("#game").append("<p>Incorrect answers: " + incorrect + "</p>");
+		$("#game").append("<p>A bad guess is better than no guess. Unanswered: " + unanswered + "</p>");
+	}	
+
+	$("#game").on("click", "p", function() {
+		var correctanswer = trivia[i].answer;
+		var userguess = ($(this).text());
+		stop();
+
+		if (correctanswer === userguess) {
+			correct++;
+			$("#game").html("<p>You're Correct. The correct answer is " + trivia[i].answer + ".</p>");
+			$("#timer").hide();
+			setTimeout(empty, 4000);
+		}
+
+		else {
+			incorrect++;
+			$("#game").html("<p>Wrong! The correct answer is " + trivia[i].answer + ".</p>");
+			$("#timer").hide();		
+			setTimeout(empty, 4000);
+
+		}
+
+	});
 
 });//document ready
