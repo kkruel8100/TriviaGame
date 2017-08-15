@@ -20,11 +20,9 @@ var trivia = [{
 var time = 8; //variable for countdown per question.  if change time changes, update here and in reset function
 var interval; //variable for countdown by 1 second increments
 var unanswered = 0; //variable for unanswered questions
-var currentQuestion = false;
 var correct = 0;
 var incorrect = 0;
 var i=0;
-var gameOver = false;
 
 	$("#start").on("click", start);
 	$("#restart").on("click", reset);
@@ -32,7 +30,6 @@ var gameOver = false;
 	function start () {
 		getQuestion(i);
 		$("#start").hide();
-
 	}
 
 	function reset () {
@@ -55,7 +52,7 @@ var gameOver = false;
 			unanswered++;
 			$("#game").html("<p>The correct answer is " + trivia[i].answer + ".</p>");
 			$("#timer").hide();
-			setTimeout(empty, 4000);	
+			setTimeout(empty, 4000);//set timeout of 4 seconds before empty function	
 		}
 	}
 
@@ -66,17 +63,13 @@ var gameOver = false;
 
 	//function to get next question
 	function getQuestion (i) {
-		if (i<trivia.length && gameOver===false) {
+		if (i<trivia.length) {	
 		countdown(8);
 		$("#game").append("<h3>What was the original group name of " + trivia[i].question + "?</h3>");			
 			for (a=0; a<trivia[i].choices.length; a++) {
 				$("#game").append("<p>" + trivia[i].choices[a] + "</p>" );
 			}
-		currentQuestion===true;	
-		}	
-		else {
-			gameOver=true;
-		}	
+		}		
 	}
 
 	//function to check for end of game or get next question
