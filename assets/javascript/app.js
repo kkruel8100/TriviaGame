@@ -14,10 +14,39 @@ var trivia = [{
 	question: "Maroon 5",
 	choices: ["Yes No Maybe", "Dog Walkers", "Kara's Flowers", "Dysfunction"],
 	answer: "Kara's Flowers"
-	}	
+	}	,{
+	question: "Green Day",
+	choices: ["ADHD", "Save the Planet", "Perpetually Hopeful", "Sweet Children"],
+	answer: "Sweet Children"
+	},{
+	question: "Van Halen",
+	choices: ["The Vulcan Itch", "Rat Salad", "The F Street Band", "Draculovers"],
+	answer: "Rat Salad"
+	},{
+	question: "Nirvana",
+	choices: ["Free Mattress", "Euphoric Dysfunction", "Pen Cap Chew", "Self Inflicted"],
+	answer: "Pen Cap Chew"
+	},{
+	question: "Outkast",
+	choices: ["Two Shades Deep", "Heavenly Diversion", "Pray to God", "Not Allowed"],
+	answer: "Two Shades Deep"
+	},{
+	question: "Beastie Boys",
+	choices: ["Phive Alarm Phire", "No Police", "Vine", "The Young Aborigines"],
+	answer: "The Young Aborigines"
+	},{
+	question: "Radiohead",
+	choices: ["On a Friday", "Antisocial", "Aversion Whine", "Get Out of Here"],
+	answer: "On a Friday"
+	},{
+	question: "Led Zeppelin",
+	choices: ["Return of Mr. Hand", "The New Yardbirds", "Ramen and Mac", "Horror Bulls"],
+	answer: "The New Yardbirds"
+	}
+
 ];
 
-var time = 8; //variable for countdown per question.  if change time changes, update here and in reset function
+var time = 10; //variable for countdown per question.  if change time changes, update here and in reset function
 var interval; //variable for countdown by 1 second increments
 var unanswered = 0; //variable for unanswered questions
 var correct = 0;
@@ -33,7 +62,12 @@ var i=0;
 	}
 
 	function reset () {
-		countdown(8);
+		$("#game").empty();
+		unanswered=0;
+		correct=0;
+		incorrect=0;
+		i=0;
+		getQuestion(i);
 	}
 
 	//function to countdown by 1 second increments
@@ -52,7 +86,7 @@ var i=0;
 			unanswered++;
 			$("#game").html("<p>The correct answer is " + trivia[i].answer + ".</p>");
 			$("#timer").hide();
-			setTimeout(empty, 4000);//set timeout of 4 seconds before empty function	
+			setTimeout(empty, 3000);//set timeout of 3 seconds before empty function	
 		}
 	}
 
@@ -63,8 +97,9 @@ var i=0;
 
 	//function to get next question
 	function getQuestion (i) {
+		$("#restart").css("visibility", "hidden");
 		if (i<trivia.length) {	
-		countdown(8);
+		countdown(10);
 		$("#game").append("<h3>What was the original group name of " + trivia[i].question + "?</h3>");			
 			for (a=0; a<trivia[i].choices.length; a++) {
 				$("#game").append("<p>" + trivia[i].choices[a] + "</p>" );
@@ -92,6 +127,7 @@ var i=0;
 		$("#game").append("<p>Correct answers: " + correct + "</p>");
 		$("#game").append("<p>Incorrect answers: " + incorrect + "</p>");
 		$("#game").append("<p>A bad guess is better than no guess. Unanswered: " + unanswered + "</p>");
+		$("#restart").css("visibility", "visible");
 	}	
 
 	$("#game").on("click", "p", function() {
@@ -103,14 +139,14 @@ var i=0;
 			correct++;
 			$("#game").html("<p>You're Correct. The correct answer is " + trivia[i].answer + ".</p>");
 			$("#timer").hide();
-			setTimeout(empty, 4000);
+			setTimeout(empty, 3000);
 		}
 
 		else {
 			incorrect++;
 			$("#game").html("<p>Wrong! The correct answer is " + trivia[i].answer + ".</p>");
 			$("#timer").hide();		
-			setTimeout(empty, 4000);
+			setTimeout(empty, 3000);
 
 		}
 
